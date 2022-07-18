@@ -1,0 +1,10 @@
+一、TODO 其中 com.kou.gulimall.product.controller.CategoryController
+ *  1、树结构展示 | 递归
+二、TODO com.kou.gulimall.product.controller.BrandController
+ * 1、使用JSR303校验
+ com.kou.gulimall.product.exception.GulimallExceptionControllerAdvice
+三、TODO 远程调用 可以将所有请求都走一遍网关
+ 1、feign 调用流程
+    1、构造请求数据，将对象转为JSON
+    2、发送请求进行执行并解码
+    3、执行请求会有重试机制：会先尝试执行，没成功再去执行 并且会把异常跑出去

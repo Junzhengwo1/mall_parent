@@ -1,0 +1,4 @@
+netstat -ano
+netstat -ano|findstr 9000
+tasklist
+tasklist | findstr 9000

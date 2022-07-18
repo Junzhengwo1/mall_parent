@@ -1,0 +1,3 @@
+LinkedHashMap cannot be cast to com.kou.gulimall.common.to.SkuHasStockVo
+（原因是，R对象的数据的类型）
+nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException:
