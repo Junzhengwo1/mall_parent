@@ -3,4 +3,8 @@
     2）hash一致性，ip_hash
         优：只需改nginx 的代码；而且多台服务器负载也是均衡的
         缺：假如是水平扩展服务器的话 重启的话；会出现hash到另外的服务器；但是这个影响比较小（因为session本身就有效期）
-    3）使用redisSession 来解决是比较简单的解耦的一种方案
+    3）使用SpringSession即redisSession 来解决是比较简单的解耦的一种方案
+        核心原理；RedisOperationSessionRepostitory 包装者模式；只要是用了redis;
+        则所有的session的增删改查就都是用到了redis;
+
+

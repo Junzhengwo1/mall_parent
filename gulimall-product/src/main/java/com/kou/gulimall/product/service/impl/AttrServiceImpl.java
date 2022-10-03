@@ -17,7 +17,10 @@ import com.kou.gulimall.product.dao.AttrAttrgroupRelationDao;
 import com.kou.gulimall.product.dao.AttrDao;
 import com.kou.gulimall.product.dao.AttrGroupDao;
 import com.kou.gulimall.product.dao.CategoryDao;
-import com.kou.gulimall.product.entity.*;
+import com.kou.gulimall.product.entity.AttrAttrgroupRelationEntity;
+import com.kou.gulimall.product.entity.AttrEntity;
+import com.kou.gulimall.product.entity.AttrGroupEntity;
+import com.kou.gulimall.product.entity.CategoryEntity;
 import com.kou.gulimall.product.service.AttrService;
 import com.kou.gulimall.product.service.CategoryService;
 import com.kou.gulimall.product.vo.AttrGroupRelationVo;
@@ -90,6 +93,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
                queryWrapper.eq(AttrEntity::getAttrId,key).or().like(AttrEntity::getAttrName,key);
             });
         }
+
         IPage<AttrEntity> page = this.page(new Query<AttrEntity>().getPage(params), queryWrapper);
         PageUtils pageUtils = new PageUtils(page);
         List<AttrEntity> records = page.getRecords();
