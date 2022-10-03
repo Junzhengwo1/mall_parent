@@ -1,0 +1,76 @@
+server:
+  port: 12000
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    #MySQL??
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/gulimall_wms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123
+  #Nacos
+  application:
+    name: ware-service
+    cloud:
+      nacos:
+        server-addr: localhost:8848
+        discovery:
+          username: nacos
+          password: nacos
+          namespace: public
+
+
+  rabbitmq:
+    host: 47.108.198.18
+    port: 5672
+    virtual-host: /
+    publisher-confirm-type: correlated
+    publisher-returns: true
+    template:
+      mandatory: true
+    #手动接受 一定要开启
+    listener:
+      simple:
+        acknowledge-mode: manual
+
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging:
+  level:
+    com.kou.server.mapper: debug
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 30000
+        readTimtout: 30000
+
+seata:
+  registry:
+    type: nacos
+    nacos:
+      server-addr: localhost:8848
+      username: nacos
+      password: nacos
+  config:
+    type: nacos
+    nacos:
+      server-addr: localhost:8848
+      username: nacos
+      password: nacos

@@ -1,0 +1,39 @@
+server:
+  port: 9000
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    #MySQL??
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/gulimall_ums?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123
+  #Nacos
+  application:
+    name: member-service
+    cloud:
+      nacos:
+        server-addr: localhost:8848
+        discovery:
+          username: nacos
+          password: nacos
+          namespace: public
+
+  redis:
+    timeout: 10000ms
+    host: 47.108.198.18
+    port: 6379
+    database: 5 # ????????0?
+
+  session:
+    store-type: redis
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+logging:
+  level:
+    com.kou.server.mapper: debug

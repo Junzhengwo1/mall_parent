@@ -1,0 +1,87 @@
+server:
+  port: 10000
+
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    #MySQL??
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/gulimall_oms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123
+  #Nacos
+  application:
+    name: order-service
+    cloud:
+      nacos:
+        server-addr: localhost:8848
+        discovery:
+          username: nacos
+          password: nacos
+          namespace: public
+
+
+
+  redis:
+    timeout: 10000ms
+    host: 47.108.198.18
+    port: 6379
+    database: 5 # 选择哪个库，默认0库
+
+  rabbitmq:
+    host: 47.108.198.18
+    port: 5672
+    virtual-host: /
+    publisher-confirm-type: correlated
+    publisher-returns: true
+    template:
+      mandatory: true
+    #手动接受 一定要开启
+    listener:
+      simple:
+        acknowledge-mode: manual
+
+  session:
+    store-type: redis
+
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+logging:
+  level:
+    com.kou.server.mapper: debug
+
+gulimall:
+  thread:
+    core-size: 20
+    max-size: 200
+    keep-alive-time: 10
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 30000
+        readTimtout: 30000
+
+#配置seata 通信
+seata:
+  registry:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      username: nacos
+      password: nacos
+  config:
+    type: nacos
+    nacos:
+      server-addr: localhost:8848
+      username: nacos
+      password: nacos
